@@ -10,7 +10,7 @@ Certifique-se de ter os seguintes programas instalados em sua máquina:
 - Configuração do Projeto
 
 # 1. Clone o repositório
-#Clone o projeto em seu ambiente local:
+# Clone o projeto em seu ambiente local:
 
 - git clone https://github.com/antonio-ricardo/nest-task-manager.git
 
