@@ -2,15 +2,15 @@ FROM node:21.1.0
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+COPY package.json ./
 
 RUN yarn
 
 COPY . .
 
-RUN yarn build
-
 RUN npx prisma generate
+
+RUN yarn build
 
 EXPOSE 3000
 

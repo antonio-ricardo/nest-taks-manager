@@ -23,7 +23,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    command: /bin/sh -c "./wait-for-it.sh db:3306 -- yarn start:prod && node seed.js"
-      
+    command: /bin/sh -c "yarn start:prod && node seed.js"
+
 volumes:
   db_data:
