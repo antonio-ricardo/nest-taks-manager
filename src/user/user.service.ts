@@ -23,6 +23,14 @@ export class UserService {
       );
     }
 
+    const alreadyExistUserWithName = await this.prisma.user.findFirst({
+      where: { name: data.name, deletedAt: null },
+    });
+
+    if (alreadyExistUserWithName) {
+      throw new BadRequestException('Já existe um usuário com o nome enviado');
+    }
+
     if (data.password) {
       data.password = this.getHashedPassword(data.password);
     }
@@ -57,6 +65,14 @@ export class UserService {
       throw new NotFoundException(
         'Não foi possível encontrar o usuário com o ID enviado',
       );
+    }
+
+    const alreadyExistUserWithName = await this.prisma.user.findFirst({
+      where: { id: { not: id }, name: data.name, deletedAt: null },
+    });
+
+    if (alreadyExistUserWithName) {
+      throw new BadRequestException('Já existe um usuário com o nome enviado');
     }
 
     if (data.password) {

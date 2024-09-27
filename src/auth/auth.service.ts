@@ -17,7 +17,7 @@ export class AuthService {
     password,
   }: loginSchemaType): Promise<{ accessToken: string }> {
     const user = await this.prisma.user.findFirst({
-      where: { name: username },
+      where: { name: username, deletedAt: null },
     });
 
     if (!user) {
