@@ -19,14 +19,14 @@ Certifique-se de ter os seguintes programas instalados em sua máquina:
 - cd nest-task-manager
 
 # 2. Configurar env
-O projeto possui algumas variáveis de ambiente, mas se não quiser definir utilize a do env.example (obs: utilize a database_url do env.example)
+Altere o nome do arquivo .env.example para .env
 
 # 3. Rodar o banco com Docker Compose
 Para rodar o banco de dados, use o Docker Compose. Isso irá subir o container do MySQL.
 
 # Execute o seguinte comando:
 
-- docker-compose up --build
+- docker-compose up --build -d
 
 # 4. Acessar a aplicação
 # Após o docker-compose up ser executado com sucesso, rode os seguintes comandos:
@@ -37,7 +37,7 @@ Para rodar o banco de dados, use o Docker Compose. Isso irá subir o container d
 
 - yarn build
 
-- yarn ts-node seed.js
+- yarn ts-node seed.ts
 
 - yarn start:prod
 
