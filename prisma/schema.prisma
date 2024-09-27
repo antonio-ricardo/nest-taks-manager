@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id        String    @id @default(uuid())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  User      User[]    @relation("OrganizationUsers")
+  Task      Task[]
+}
+
+model User {
+  id             String        @id @default(uuid())
+  name           String
+  password       String
+  role           Role
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  deletedAt      DateTime?
+  organization   Organization? @relation("OrganizationUsers", fields: [organizationId], references: [id])
+  organizationId String?
+  Task           Task[]
+
+  @@index([organizationId])
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  title       String
+  description String?
+  status      TaskStatus @default(PENDING)
+  dueDate     DateTime
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  deletedAt   DateTime?
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+
+  @@index([userId])
+}
+
+enum Role {
+  ORGANIZATION_ADMIN
+  USER
+  ADMIN
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
