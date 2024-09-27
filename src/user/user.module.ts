@@ -16,7 +16,7 @@ export class UserModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .forRoutes({ path: 'users', method: RequestMethod.ALL });
+      .forRoutes({ path: 'users*', method: RequestMethod.ALL });
 
     consumer
       .apply((req: Request, res: Response, next: NextFunction) => {
@@ -26,6 +26,6 @@ export class UserModule {
         ]);
         return roleMiddleware.use(req, res, next);
       })
-      .forRoutes({ path: 'users', method: RequestMethod.ALL });
+      .forRoutes({ path: 'users*', method: RequestMethod.ALL });
   }
 }

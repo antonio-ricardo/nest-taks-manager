@@ -15,13 +15,13 @@ export class OrganizationModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .forRoutes({ path: 'organizations', method: RequestMethod.ALL });
+      .forRoutes({ path: 'organizations*', method: RequestMethod.ALL });
 
     consumer
       .apply((req: Request, res: Response, next: NextFunction) => {
         const roleMiddleware = new RoleMiddleware(['ADMIN']);
         return roleMiddleware.use(req, res, next);
       })
-      .forRoutes({ path: 'organizations', method: RequestMethod.ALL });
+      .forRoutes({ path: 'organizations*', method: RequestMethod.ALL });
   }
 }

@@ -15,7 +15,7 @@ export class TaskModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .forRoutes({ path: 'tasks', method: RequestMethod.ALL });
+      .forRoutes({ path: 'tasks*', method: RequestMethod.ALL });
 
     consumer
       .apply((req: Request, res: Response, next: NextFunction) => {
@@ -25,7 +25,7 @@ export class TaskModule {
         ]);
         return roleMiddleware.use(req, res, next);
       })
-      .forRoutes({ path: 'tasks', method: RequestMethod.GET });
+      .forRoutes({ path: 'tasks*', method: RequestMethod.GET });
 
     consumer
       .apply((req: Request, res: Response, next: NextFunction) => {
@@ -35,7 +35,7 @@ export class TaskModule {
         ]);
         return roleMiddleware.use(req, res, next);
       })
-      .forRoutes({ path: 'tasks', method: RequestMethod.PUT });
+      .forRoutes({ path: 'tasks*', method: RequestMethod.PUT });
 
     consumer
       .apply((req: Request, res: Response, next: NextFunction) => {
@@ -45,13 +45,13 @@ export class TaskModule {
         ]);
         return roleMiddleware.use(req, res, next);
       })
-      .forRoutes({ path: 'tasks', method: RequestMethod.DELETE });
+      .forRoutes({ path: 'tasks*', method: RequestMethod.DELETE });
 
     consumer
       .apply((req: Request, res: Response, next: NextFunction) => {
         const roleMiddleware = new RoleMiddleware(['ORGANIZATION_ADMIN']);
         return roleMiddleware.use(req, res, next);
       })
-      .forRoutes({ path: 'tasks', method: RequestMethod.POST });
+      .forRoutes({ path: 'tasks*', method: RequestMethod.POST });
   }
 }
