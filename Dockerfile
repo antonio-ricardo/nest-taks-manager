@@ -8,8 +8,10 @@ RUN yarn
 
 COPY . .
 
+RUN yarn build
+
 RUN npx prisma generate
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start:prod"]
