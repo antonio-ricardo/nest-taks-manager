@@ -134,7 +134,7 @@ paths:
         - bearerAuth: []
 
     delete:
-      summary: Remove um usuário específico.
+      summary: Deleta um usuário específico e suas tarefas.
       operationId: deleteUser
       tags:
         - Usuários
@@ -274,7 +274,7 @@ paths:
         - bearerAuth: []
 
     delete:
-      summary: Remove uma tarefa específica.
+      summary: Deleta uma tarefa específica.
       operationId: deleteTask
       tags:
         - Tarefas
@@ -413,6 +413,28 @@ paths:
       responses:
         '200':
           description: Organização atualizada com sucesso.
+        '404':
+          description: Organização não encontrada.
+        '401':
+          description: Token inválido.
+      security:
+        - bearerAuth: []
+
+    delete:
+      summary: Deleta uma organização específica, suas tarefas e seus usuários.
+      operationId: deleteOrganization
+      tags:
+        - Organizações
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da organização.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Organização removida com sucesso.
         '404':
           description: Organização não encontrada.
         '401':
