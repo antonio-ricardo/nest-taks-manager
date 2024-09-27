@@ -49,3 +49,7 @@ http://localhost:3000
 
 username: admin
 password: admin123
+
+# 7. documentação da API na URL:
+
+http://localhost:3000/api
