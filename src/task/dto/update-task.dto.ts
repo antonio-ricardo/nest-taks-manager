@@ -14,7 +14,7 @@ export const updateTaskSchema = z.object({
         'O status da tarefa tem que ser pendente, em progresso ou concluído',
     })
     .optional(),
-  dueDate: z
+  dueDate: z.coerce
     .date({
       required_error: 'O prazo da tarefa é obrigatório',
       invalid_type_error: 'O prazo da tarefa precisa ser uma data',

@@ -177,7 +177,7 @@ paths:
                 dueDate:
                   type: string
                   format: date
-                  example: '2024-12-31'
+                  example: '2024-09-27T03:01:36.324Z'
                 userId:
                   type: string
                   example: 'user123'
@@ -256,7 +256,7 @@ paths:
                 dueDate:
                   type: string
                   format: date
-                  example: '2024-12-31'
+                  example: '2024-09-27T03:01:36.324Z'
                 userId:
                   type: string
                   example: 'user123'

@@ -28,9 +28,13 @@ export class AuthMiddleware implements NestMiddleware {
       }
 
       const secret = this.configService.get<string>('JWT_SECRET') || 'secret';
-      const decoded = jwt.verify(token, secret);
+      const decoded = jwt.verify(token, secret) as User;
 
-      (req as RequestWithUser).user = decoded as User;
+      (req as RequestWithUser).user = decoded;
+
+      if (!!decoded.deletedAt) {
+        throw new UnauthorizedException('Token inválido');
+      }
     } catch (err) {
       throw new UnauthorizedException('Token inválido');
     }
