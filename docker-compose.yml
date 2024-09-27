@@ -14,16 +14,5 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
-  app:
-    build: .
-    container_name: myapp
-    environment:
-      DATABASE_URL: mysql://nest-project:nest-project@db:3306/nest-project
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    command: /bin/sh -c "yarn start:prod && node seed.js"
-
 volumes:
   db_data:
