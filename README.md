@@ -1,7 +1,7 @@
 # Nest Task Manager
 Este é um projeto de gerenciamento de tarefas construído com NestJS e utilizando o banco de dados MySQL. O ambiente é configurado com Docker e Docker Compose para simplificar o setup.
 
-#Requisitos
+# Requisitos
 Certifique-se de ter os seguintes programas instalados em sua máquina:
 
 - Node.js (versão recomendada: 18.x ou superior)
