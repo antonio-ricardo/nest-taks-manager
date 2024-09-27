@@ -14,40 +14,38 @@ Certifique-se de ter os seguintes programas instalados em sua máquina:
 
 - git clone https://github.com/antonio-ricardo/nest-task-manager.git
 
-#entre na pasta
+# entre na pasta
 
 - cd nest-task-manager
 
 # 2. Configurar env
 O projeto possui algumas variáveis de ambiente, mas se não quiser definir utilize a do env.example (obs: utilize a database_url do env.example)
 
-# 3. Rodar o projeto com Docker Compose
-Para rodar a aplicação e o banco de dados, use o Docker Compose. Isso irá construir a imagem do Node.js e subir os containers do MySQL e da aplicação NestJS.
+# 3. Rodar o banco com Docker Compose
+Para rodar o banco de dados, use o Docker Compose. Isso irá subir o container do MySQL.
 
 # Execute o seguinte comando:
 
-docker-compose up --build
-
-# Isso vai:
-
-Baixar a imagem do MySQL.
-Instalar todas as dependências do projeto.
-Subir a aplicação e o banco de dados.
-Executar o comando node seed.js para criar um usuário administrador no banco de dados local.
-A aplicação será exposta na porta 3000, e o banco de dados MySQL na porta 3306.
+- docker-compose up --build
 
 # 4. Acessar a aplicação
-#Após o docker-compose up ser executado com sucesso, a aplicação estará disponível em:
+# Após o docker-compose up ser executado com sucesso, rode os seguintes comandos:
+
+- yarn
+
+- npx prisma migrate deploy
+
+- yarn build
+
+- yarn ts-node seed.js
+
+- yarn start:prod
+
+# 5. a aplicação estara no ar na url:
 
 http://localhost:3000
 
-# Se, por algum motivo, o script de seed (que popula o banco de dados com o usuário admin) não rodar automaticamente, você pode rodá-lo manualmente. Certifique-se de que os containers estejam rodando, e execute o seguinte comando:
-
-docker exec -it myapp node seed.js
-
-Isso criará o usuário admin no banco de dados.
-
-# 5. credenciais do admin
+# 6. credenciais do admin
 
 username: admin
 password: admin123
